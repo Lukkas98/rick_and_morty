@@ -18,53 +18,6 @@ const DivFlex = styled(Routes)`
   display: flex;
   justify-content: space-evenly;
 `
-//pruebas
-/* function customAlert(text) {
-  var alertBox = document.createElement("div");
-  alertBox.setAttribute("id", "alertBox");
-  alertBox.style.position = "fixed";
-  alertBox.style.top = "50%";
-  alertBox.style.left = "50%";
-  alertBox.style.transform = "translate(-50%, -50%)";
-  alertBox.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
-  alertBox.style.padding = "20px";
-  alertBox.style.border = "1px solid black";
-  alertBox.style.boxShadow = "2px 2px 5px #333";
-  
-  var button = document.createElement("button");
-  button.innerHTML = "OK";
-  button.style.display = "block";
-  button.style.margin = "0 auto";
-  button.addEventListener("click", removeCustomAlert);
-
-  var overlay = document.createElement("div");
-  overlay.setAttribute("id", "overlay");
-  overlay.style.position = "fixed";
-  overlay.style.top = "0";
-  overlay.style.left = "0";
-  overlay.style.width = "100%";
-  overlay.style.height = "100%";
-  overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-  overlay.style.zIndex = "100";
-  document.body.appendChild(overlay);
-
-  alertBox.innerHTML = `<p style='text-align: center;'>${text}</p>`;
-  alertBox.appendChild(button);
-
-  document.body.appendChild(alertBox);
-}
-
-function removeCustomAlert() {
-  var alertBox = document.getElementById("alertBox");
-  var overlay = document.getElementById("overlay");
-  if (alertBox) {
-    alertBox.parentNode.removeChild(alertBox);
-  }
-  if (overlay) {
-    overlay.parentNode.removeChild(overlay);
-  }
-} */
-//--------------------------------------------------------------------
 
 function App() {
   const { pathname } = useLocation();
@@ -146,14 +99,14 @@ function App() {
   //para que no se pueda navegar si la informacion no es correcta
   useEffect(() => {
     !access && navigate('/login');
-  }, [access]);
+  }, [access, navigate]);
   //------------------------------------------------------------
-  
+  function unLogin(){setAccess(false)};
   
 
   return (
     <>
-      { pathname !== "/login" && pathname !== "/about" && <Nav onSearch={onSearch}/> }
+      { pathname !== "/login" && pathname !== "/about" && <Nav onSearch={onSearch} unLogin={unLogin} /> }
       { showAlert && <CustomAlert text={alertText} showAlert={setShowAlert} /> }
       <DivFlex>
 

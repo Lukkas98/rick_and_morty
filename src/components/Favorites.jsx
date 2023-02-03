@@ -27,7 +27,7 @@ const Image = styled.img`
    box-shadow: 0px 0px 15px 3px #01003a;
    transition: all 2s;
    &:hover{
-        transform: scale(1.1);
+        transform: scale(1.2);
         outline: 2px solid rgb(81 72 155);
    }
 `
@@ -41,16 +41,17 @@ const Name = styled.h2`
     text-shadow: 1px 1px 2px #000000;
     width: 190px;
     text-align: center;
+    
 }
 `
 
 const Species = styled.h2`
-    margin-top: 10px;
-    font-size: 19px;
+    position: relative;
+    top: 15px;
+    font-size: 21px;
     text-shadow: 1px 0 3px white;
 `
 const Gender = styled.h2`
-    margin: 8px;
     font-size: 21px;
     text-shadow: 1px 0 3px white;
 }

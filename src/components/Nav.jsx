@@ -10,12 +10,12 @@ const Navbar = styled.nav`
 
 
 
-export default function Nav({ onSearch }){
+export default function Nav({ onSearch, unLogin }){
 
     return(
         <>
         <Navbar>
-            <SearchBar onSearch={onSearch}/> 
+            <SearchBar onSearch={onSearch} unLogin={unLogin} /> 
         </Navbar>
         </>
     )

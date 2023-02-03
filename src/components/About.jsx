@@ -29,11 +29,24 @@ const animationMorty = keyframes`
     top: 270px;
   }
 `
+const ChangeColor = keyframes`
+    0%{
+    background-color: #5b78d4c2;
+    }
+    25%{
+        background-color: #324984cf;
+    }
+    50%{
+        background-color: #5b78d4cf;
+    }
+    75%{
+        background-color: #5957a4cf;
+    }
+    100%{
+        background-color: #5b78d4cf;
+    }
+`
 
-/* const DivAbout = styled.div`
-    background-color: bisque;
-    height: 100vh;
-` */
 const DivNav = styled.div`
     display: flex;
     background-color: #228f8fe0;
@@ -50,8 +63,10 @@ const DivContainer = styled.div`
     justify-content: space-evenly;
 `
 const DivImage = styled.div`
+    animation: ${ChangeColor} 10s ease-in-out infinite;
+    transition: all 1.5s;
     border: 2px solid black;
-    background-color: #5ca1cad4;
+    background-color: #5b78d4c2;
     box-shadow: 4px 4px 6px 0 black;
     border-radius: 90px;
     width: 430px;
@@ -81,23 +96,20 @@ const ImgMorty = styled(ImgRick)`
 
 
 const DivFinal = styled.div`
+    animation: ${ChangeColor} 10s ease-in-out infinite;
+    transition: all 1.5s;
     transform: perspective(800px) rotateX(10deg);
     border: 1px solid black;
     box-shadow: 0px 3px 6px 0 black;
     margin: 85px;
-    background-color: #5ea3d0cf;
-    color: #ffc252;
+    background-color: #5b78d4c2;
     display: flex;
     flex-direction: column;
     text-align: center;
-    padding: 9px;
-    font-size: 18px;
     font-variant: small-caps;
-    text-shadow: 1px 2px 3px black;
+    align-items: center;
 `
 const LinkNav = styled(NavLink)`
-    position: relative;
-    right: 40px;
     font-size: 20px;
     text-decoration: none;
     font-weight: bold;
@@ -109,29 +121,44 @@ const LinkNav = styled(NavLink)`
         color: #000000;
     }
 `
-
+const ContainerP = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+const TagP = styled.p`
+    width: 70%;
+    color: #0300c5;
+    text-shadow: 2px 1px 4px #d1d1d1;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 15px;
+    background-color: #f0af1b5c;
+    border-radius: 45px;
+`
 
 
 export default function About(){
     return(
         <div>
             <DivNav>
-                <LinkNav to={"/"} >Back to Home</LinkNav>  
                 <h2>Lucas Martín Palma</h2>
             </DivNav>
             <DivContainer>
                 <ImgRick src={rick} alt="rick"  />
                 <DivImage>
-                    <span style={{paddingBottom: "30px" ,fontSize: "40px"}} >¡HI!</span>
+                    <span style={{paddingBottom: "30px" ,fontSize: "40px"}} >¡HOLA!</span>
                     <MyImage src={Myphoto} alt="My Photo" /> {/* {mi foto} */}
                 </DivImage>
                 <ImgMorty src={morty} alt="morty" />
             </DivContainer>
             <DivFinal>
-                <div>
-                    <p>About me</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, illum, aut sed culpa omnis molestiae, illo exercitationem voluptatem laudantium dolores blanditiis. Vero animi eos quibusdam velit corporis dolorem unde rem.</p>
-                </div>
+                <ContainerP>
+                    <TagP>Acerca de mi</TagP>
+                    <TagP>Me llamo Lucas tengo 24 años, soy Estudiante de Henry, siempre me encantó todo lo relacionado a la tecnologia, me recibí de una escuela técnica como maestro mayor de obras "si ya lo sé, nada tiene que ver con esto", esta es mi primera pagina de Frontend los animo a probar y espero les guste tanto como a mi hacerla.
+                    </TagP>
+                    <LinkNav to={"/"} >Back to Home</LinkNav>  
+                </ContainerP>
                 <div>
                     <img src="" alt="" />
                     <img src="" alt="" />

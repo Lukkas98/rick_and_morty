@@ -68,12 +68,12 @@ const LinkNav = styled(NavLink)`
    }
 `
 
-export default function SearchBar({onSearch}) {
+export default function SearchBar({onSearch, unLogin}) {
 
-   const [character, setCharacter] = useState("")
+   const [character, setCharacter] = useState("");
 
    const handleChange = (e) => {
-      setCharacter(e.target.value)
+      setCharacter(e.target.value);
    }
 
    const { pathname } = useLocation();
@@ -90,6 +90,7 @@ export default function SearchBar({onSearch}) {
                   <LinkNav to={"/favorites"} >FAVORITES</LinkNav>
                )
             }
+            <LinkNav to={"/login"} onClick={()=>{unLogin()}}>LOGOUT</LinkNav>
          </div>                                    
          <div> 
             {
