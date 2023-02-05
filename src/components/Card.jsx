@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
@@ -100,7 +100,7 @@ const ButtonFav = styled(Button)`
 export default function Card({ onClose, name, species, gender, image, id}) {
    const [isFav, setIsFav] = useState(false); 
 
-   const myFavorites = useSelector(state => state.myFavorites);
+   const myFavorites = useSelector(state => state.allCharacters);
 
    const dispatch = useDispatch();
 
@@ -121,7 +121,7 @@ export default function Card({ onClose, name, species, gender, image, id}) {
             setIsFav(true);
          }
       });
-   }, [myFavorites]);
+   }, [myFavorites, id]);
 
    return (
       <DivImage>

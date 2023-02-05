@@ -97,7 +97,7 @@ export default function SearchBar({onSearch, unLogin}) {
                pathname === "/" ? (
                   <>
                      <Input type='search' onChange={handleChange} placeholder="Search with a number..."/>
-                     <Button onClick={() => onSearch(character)}>Add</Button>
+                     <Button onClick={() => onSearch(character)} >Add</Button>
                   </>
                ) : (
                   <>

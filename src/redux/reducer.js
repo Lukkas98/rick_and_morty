@@ -1,7 +1,8 @@
-import { ADD_CHARACTER, REMOVE_CHARACTER } from "./type";
+import { ADD_CHARACTER, FILTER, ORDER, REMOVE_CHARACTER } from "./type";
 
 const initialState = {
-    myFavorites: []
+    myFavorites: [],
+    allCharacters: []
 }
 
 export default function reducer (state = initialState, { type, payload }){
@@ -9,14 +10,47 @@ export default function reducer (state = initialState, { type, payload }){
         case ADD_CHARACTER:
             return{
                 ...state,
-                myFavorites: [...state.myFavorites, payload]
+                myFavorites: [...state.myFavorites, payload],
+                allCharacters: [...state.myFavorites, payload]
             }
         case REMOVE_CHARACTER:
             let newArray = state.myFavorites.filter(character => character.id !== payload);
             return{
                 ...state,
-                myFavorites: newArray
+                myFavorites: newArray,
+                allCharacters: newArray
             }
+        case FILTER:
+            if(payload === "All"){
+                return{
+                    ...state,
+                    myFavorites: [...state.allCharacters]
+                }
+            }
+
+            let filterArray = [...state.allCharacters].filter( character => character.gender === payload)
+            return{
+                ...state,
+                myFavorites: filterArray
+            }
+        case ORDER:
+            let copyArray
+            if (state.myFavorites.length === state.allCharacters.length) {
+                copyArray = [...state.allCharacters]
+            }else{
+                copyArray = [...state.myFavorites]
+            }
+            let filterid
+            if (payload === "Ascendente") {
+                filterid = copyArray.sort((a, b) => a.id - b.id )
+            }else if( payload === "Descendente"){
+                filterid = copyArray.sort((a, b) => b.id - a.id )
+            }
+            return{
+                ...state,
+                myFavorites: filterid
+            }
+
         default:
             return {...state}
     }
