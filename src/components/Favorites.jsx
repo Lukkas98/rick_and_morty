@@ -69,29 +69,55 @@ const DivFavorites = styled.div`
     flex-direction: column;
     align-items: center;
 `
+const ContentSelect = styled.div`
+    min-width: 200px;
+	position: relative;
+`
+
 const Select = styled.select`
-    padding: 5px;
-    font-size: 15px;
-    margin: 3px 10px;
-    background-color: lightgray;
-    &:focus-visible {
-        background-color: lightgray;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    &::-ms-expand {
+        display: none;
+      }
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+    padding: 7px 10px;
+    height: 40px;
+    outline: 0;
+    background: #d6d6d6;
+    font-size: 17px;
+    font-weight: 600;
+    color: #272727;
+    font-family: 'Quicksand',sans-serif;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.25s ease;
+    &:hover{
+        background: #B1E8CD;
     }
 `
-const OptGroup = styled.optgroup`
-    border-radius: 30px;
-  background-color: lightgray;
-  font-size: 14px;
-  padding: 10px;
-`;
+const Arrow = styled.i`
+    position: absolute;
+    right: 20px;
+    top: calc(60% - 13px);
+    width: 13px;
+    height: 13px;
+    display: block;
+    border-left: 2px solid #2AC176;
+    border-bottom: 2px solid #2AC176;
+    transform: rotate(-45deg);
+    transition: all 0.25s ease;
+` 
+
 const Option = styled.option`
-    width: 200px;
     color: #ff5722;
-    padding: 8px;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 16px;
     margin: 9px 2px;
-    border-top: 1px solid black;
 `
 
 
@@ -99,7 +125,10 @@ export function Favorites() {
     const myFavorites = useSelector ( state => state.myFavorites); 
     const dispatch = useDispatch()
 
-    useEffect(()=> { dispatch(filterCards("All")) } , [dispatch])
+    useEffect(()=> { 
+        dispatch(filterCards("All"))
+        dispatch(orderCards("Ascendente"))
+    } , [dispatch])
     
     function order(e){
         dispatch(orderCards(e.target.value))
@@ -110,20 +139,24 @@ export function Favorites() {
 
     return (
         <DivFavorites>
-            <div>
-                <Select onChange={order} >
-                    <OptGroup label="Order by ID" >
+            <div style={{ display:"flex", gap:"30px" }} >
+                <ContentSelect>
+                    <Select onChange={order} >
                         <Option value="Ascendente">Ascendente</Option>
-                        <Option value="Descendente">Descendente</Option> 
-                    </OptGroup>
-                </Select>
-                <Select onChange={filter} >
-                    <Option value="All">All</Option>
-                    <Option value="Male">Male</Option>
-                    <Option value="Female">Female</Option>
-                    <Option value="Genderless">Genderless</Option>
-                    <Option value="unknown">unknown</Option>
-                </Select>
+                        <Option value="Descendente">Descendente</Option>  
+                    </Select>
+                    <Arrow />
+                </ContentSelect>
+                <ContentSelect>
+                    <Select onChange={filter} >
+                        <Option value="All">All</Option>
+                        <Option value="Male">Male</Option>
+                        <Option value="Female">Female</Option>
+                        <Option value="Genderless">Genderless</Option>
+                        <Option value="unknown">unknown</Option>
+                    </Select>
+                    <Arrow />
+                </ContentSelect>
             </div>
             <DivContainer >
             {myFavorites.map(character => {
