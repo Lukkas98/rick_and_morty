@@ -42,9 +42,9 @@ export default function reducer (state = initialState, { type, payload }){
             }
             let filterid
             if (payload === "Ascendente") {
-                filterid = copyArray.sort((a, b) => a.id - b.id )
+                filterid = copyArray.sort((charA, charB) => charA.id - charB.id )
             }else if( payload === "Descendente"){
-                filterid = copyArray.sort((a, b) => b.id - a.id )
+                filterid = copyArray.sort((charA, charB) => charB.id - charA.id )
             }
             return{
                 ...state,

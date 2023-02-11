@@ -12,7 +12,7 @@ const Overlay = styled.div`
 `;
 
 const AlertBox = styled.div`
-  animation: animation 1.5s ease-in-out;
+  animation: animation 1.3s ease-in-out;
   z-index: 101;
   position: fixed;
   top: 30%;
@@ -28,12 +28,13 @@ const AlertBox = styled.div`
     0% {
       transform: translate(-50%, -250%);
     }
-    70% {
+    60% {
       transform: translate(-50%, -50%);
     }
-    80% {
+    70% {
       transform: translate(-45%, -50%);
-    90% {
+    }
+    80% {
       transform: translate(-55%, -50%);
     }
     100% {
@@ -68,6 +69,7 @@ const P = styled.p`
 `;
 
 export default function CustomAlert({ text, showAlert }) {
+
   return (
     <>
       <Overlay />

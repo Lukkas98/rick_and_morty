@@ -6,8 +6,11 @@ const DivFlex = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   text-align: center;
-  column-gap: 25px;
+  gap: 15px 20px;
   margin: 20px 40px;
+  @media (max-width: 900px) {
+      
+  }
 `
 
 

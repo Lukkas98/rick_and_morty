@@ -9,6 +9,7 @@ import Form from "./components/Form/Form";
 import { useDispatch, useSelector } from "react-redux";
 import { Favorites } from "./components/Favorites";
 import { removeCharacter } from "./redux/actions";
+import axios from "axios"
 
 import imageBack from "./components/assets/633221.jpg"
 import imageAbout from "./components/assets/fractal.png"
@@ -42,10 +43,17 @@ function App() {
   const [ showAlert, setShowAlert ] = useState(false)
   const [ alertText, setAlertText ] = useState(null)
 
-  function onSearch(character) {
-    fetch(`https://rickandmortyapi.com/api/character/${character}`)
-      .then((response) => response.json())
-      .then((data) => {
+
+  function onSearch(characterID) {
+    if(isNaN(Number(characterID))){
+      setShowAlert(true);
+      setAlertText("You can only search with a number");
+      return;
+    }
+
+    axios(`http://localhost:3001/rickandmorty/onsearch/${characterID}`)
+      .then( res => res.data )
+      .then( data => {
         if (data.name) {
           if (!characters.find(character => character.id === data.id)) {
             setCharacters((oldChars) => [...oldChars, data]);
@@ -53,11 +61,11 @@ function App() {
             setShowAlert(true);
             setAlertText("This character already exists");
           }
-        } else {
-          setShowAlert(true);
-          setAlertText("There are no characters with that ID");
-        }
-    });
+        } 
+    }).catch(() => {
+      setShowAlert(true);
+      setAlertText("There are no characters with that ID")
+    })
   }
   
 
@@ -74,7 +82,7 @@ function App() {
 
   //validacion falsa de seguridad
   const username = "lucas@gmail.com";
-  const password = "1password";
+  const password = "lucas1234";
   const navigate = useNavigate();
   const [ access, setAccess ] = useState(false);
 
@@ -113,6 +121,7 @@ function App() {
         <Route path="/login" element={ <Form login={login}  /> }/>
 
         <Route path="/" element={ <Cards onClose={onClose} characters={characters}/>}/>
+        
         
         <Route path="/detail/:id" element={ <Detail /> } />
 

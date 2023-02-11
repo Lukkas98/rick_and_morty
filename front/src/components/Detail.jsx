@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom"; 
 import styled, { keyframes } from "styled-components";
+import axios from "axios";
 
 const sideRigth = keyframes`
   from {
@@ -81,18 +82,10 @@ export default function Detail(){
     const [character , setCharacter] = useState({})
 
     useEffect(() => {
-        fetch(`https://rickandmortyapi.com/api/character/${id}`)
-          .then((response) => response.json())
-          .then((char) => {
-            if (char.name) {
-              setCharacter(char);
-            } else {
-              window.alert("There are no characters with that ID");
-            }
-          })
-          .catch(() => {
-            window.alert("There are no characters with that ID");
-          });
+        axios(`http://localhost:3001/rickandmorty/detail/${id}`)
+          .then( res => res.data)
+          .then( char  => { setCharacter(char) })
+          
         return setCharacter({});
     }, [id]);
 
@@ -100,7 +93,7 @@ export default function Detail(){
     return(
         <DivFlex>
           <DivContainer>
-            <div >
+            <div>
               <PDetail>{character.name ? "Nombre: " + character.name : ''} </PDetail>
               <PDetail>{character.status ? "Status: " + character.status : ''}</PDetail>
               <PDetail>{character.species ? "Specie: " +  character.species : "Specie: Don't have specie"}</PDetail>

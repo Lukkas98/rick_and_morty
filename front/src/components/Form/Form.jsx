@@ -79,15 +79,12 @@ const Img = styled.img`
     box-shadow: 1px -5px 6px 0px #ffe72c;
     margin-bottom: 45px;
     animation: ${animation} 4s infinite;
-    // transition: all 2s;
-    // &:hover{
-    //     transform: rotate(360deg);
-    // }
 `
 const Error = styled.p`
     width: 280px;
     text-align: center;
-    color: #f35959;
+    color: #fc8249;
+    text-shadow: 0px 2px 1px #252525;
     font-weight: bold;
     font-size: 16px;
     margin: 5px 0 0 0;
@@ -127,7 +124,7 @@ export default function Form({ login }){
                 <Input type="text" name="username" value={userData.username} onChange={handleInputChange} placeholder="lucas@gmail.com"autoComplete="off"/>
                 { errors.username && <Error>{errors.username}</Error> }
                 <Label>Password:</Label>
-                <Input type="password" name="password" value={userData.password} onChange={handleInputChange} placeholder="1password" autoComplete="off" />
+                <Input type="password" name="password" value={userData.password} onChange={handleInputChange} placeholder="lucas1234" autoComplete="off" />
                 { errors.password && <Error>{errors.password}</Error> }
                 <Button type="submit" >Send</Button>
             </Formu>

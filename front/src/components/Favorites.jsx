@@ -4,11 +4,12 @@ import styled from "styled-components";
 import { filterCards, orderCards } from "../redux/actions";
 
 const DivImage = styled.div`
+    gap: 25px;
    font-variant: small-caps;
    margin: 40px 20px;
    display: flex;
    width: 250px;
-   height: 400px;
+   height: fit-content;
    outline: 1px solid rgb(59 161 139);
    background-color: rgb(81 72 155);
    box-shadow: -5px 4px 7px 0px rgb(59 161 139);
@@ -22,12 +23,11 @@ const DivImage = styled.div`
    }
 `
 const Image = styled.img`
-   width: 200px;
-   margin-top: 20px;
-   border-radius: 55px;
-   outline: 2px solid #000000;
-   box-shadow: 0px 0px 15px 3px #01003a;
-   transition: all 2s;
+    width: 200px;
+    border-radius: 55px;
+    outline: 2px solid #000000;
+    box-shadow: 0px 0px 15px 3px #01003a;
+    transition: all 2s;
    &:hover{
         transform: scale(1.2);
         outline: 2px solid rgb(81 72 155);
@@ -35,7 +35,7 @@ const Image = styled.img`
 `
 const Name = styled.h2`
     font-variant: small-caps;
-    background-color: #08118336;
+    background-color: #0811835e;
     padding: 3px 10px;
     font-size: 17px;
     font-weight: 700;
@@ -43,22 +43,24 @@ const Name = styled.h2`
     text-shadow: 1px 1px 2px #000000;
     width: 190px;
     text-align: center;
-    
 }
 `
 
 const Species = styled.h2`
-    position: relative;
-    top: 15px;
+    margin: 0;
     font-size: 21px;
     text-shadow: 1px 0 3px white;
 `
 const Gender = styled.h2`
+    margin: 0;
+    margin-bottom: 15px;
     font-size: 21px;
     text-shadow: 1px 0 3px white;
 }
 `
 const DivContainer = styled.div`
+    height: fit-content;
+    gap: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -114,10 +116,9 @@ const Arrow = styled.i`
 ` 
 
 const Option = styled.option`
-    color: #ff5722;
-    font-weight: 600;
-    font-size: 16px;
-    margin: 9px 2px;
+    color: #0114ba;
+    font-weight: 700;
+    font-size: 17px;
 `
 
 
