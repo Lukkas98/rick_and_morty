@@ -9,7 +9,7 @@ const DivFlex = styled.div`
   gap: 15px 20px;
   margin: 20px 40px;
   @media (max-width: 900px) {
-      
+    padding:1px;
   }
 `
 

@@ -9,6 +9,9 @@ const Image = styled.img`
    border-radius: 55px;
    outline: 2px solid #000000;
    box-shadow: 0px 0px 15px 3px #01003a;
+   @media (max-width: 900px) {
+      width: 170px;
+   }
 `
 
 const DivImage = styled.div`
@@ -29,7 +32,7 @@ const DivImage = styled.div`
       outline: 2px solid #ffffff;
    }
    @media (max-width: 900px) {
-      
+      width: 200px;
    }
 `
 
@@ -50,6 +53,9 @@ const Name = styled(NavLink)`
    
    &:hover{
       animation: round 0.5s ease-in-out;
+   }
+   @media (max-width: 900px) {
+      top: 173px;
    }
    
   @keyframes round {
