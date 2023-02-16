@@ -12,14 +12,15 @@ export default function reducer (state = initialState, { type, payload }){
                 ...state,
                 myFavorites: [...state.myFavorites, payload],
                 allCharacters: [...state.myFavorites, payload]
-            }
-        case REMOVE_CHARACTER:
+            }  
+        case REMOVE_CHARACTER:        
             let newArray = state.myFavorites.filter(character => character.id !== payload);
             return{
                 ...state,
                 myFavorites: newArray,
                 allCharacters: newArray
             }
+            
         case FILTER:
             if(payload === "All"){
                 return{

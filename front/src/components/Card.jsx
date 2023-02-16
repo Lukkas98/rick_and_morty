@@ -159,23 +159,3 @@ export default function Card({ onClose, name, species, gender, image, id}) {
       </DivImage>
    );
 }
-
-/* const mapStateToProps = (state)=>{
-   return{
-      myFavorites: state.myFavorites
-   }
-} */
-
-
-/* const mapDispatchToProps = (dispatch)=>{
-   return{
-      addFavorite: (character)=>{
-         dispatch(addCharacter(character))
-      },
-      removeFavorite: (id)=>{
-         dispatch(removeCharacter(id))
-      }
-   }
-} */
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Card);
