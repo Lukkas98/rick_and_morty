@@ -1,27 +1,25 @@
-const axios = require("axios")
+const axios = require("axios");
+const URL = "https://rickandmortyapi.com/api/character/";
 
-const getCharById = (res, id)=>{
-    axios(`https://rickandmortyapi.com/api/character/${id}`)
-    .then(res => res.data)
-    .then((data)=>{
+const getCharById = async (req, res) => {
+    try {
+        const {id} = req.params;
+
+        const resolve = await axios(`${URL}${id}`);
+
         const character = {
-            id: data.id,
-            image: data.image,
-            name: data.name,
-            gender: data.gender,
-            species: data.species
-        }
-        res.writeHead(200, {"Content-type": "application/json"})
-        res.end(JSON.stringify(character))
-    })
-    .catch((err) => {
-        res.writeHead(500, {"Content-type": "text/plain"})
-        res.end(err.message)
-    })
+            id: resolve.data.id,
+            image: resolve.data.image,
+            name: resolve.data.name,
+            gender: resolve.data.gender,
+            species: resolve.data.species
+        }; 
+        
+        res.status(200).json(character);
+        
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
 }
 
-
-
-module.exports = {
-    getCharById
-}
+module.exports = getCharById;

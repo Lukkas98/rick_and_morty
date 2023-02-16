@@ -1,14 +1,44 @@
-const http = require("http");
-const searchId = require("./controller/getCharById");
-const searchDetail = require("./controller/getCharDetail");
+const router = require("./routes/index");
+let favorites = require("./utils/favs");
+const cors = require('cors');
+
+const express = require("express");
+const server = express();
 const PORT = 3001;
 
+server.use(express.json());
+server.use(cors())
 
-http.createServer((req, res)=>{
-    res.setHeader('Access-Control-Allow-Origin', '*');
+server.use("/", router);
 
-    const id = req.url.split("/").pop();
-    if (req.url.includes("onsearch")) searchId.getCharById(res, id);
-    if(req.url.includes("detail")) searchDetail.getCharDetail(res, id);
+server.post("/rickandmorty/fav", (req, res)=>{
+    const { id, name, gender, species, image } = req.body;
+    let character = {
+        id,
+        image,
+        name,
+        gender,
+        species
+    }
+    favorites.push(character);
+    res.status(200);
+});
+
+server.get("/rickandmorty/fav", (req, res)=>{
+    res.status(200).json(favorites);
+});
+
+server.delete("/rickandmorty/fav/:id", (req, res)=>{
+    const {id} = req.params;
     
-}).listen(PORT, "localhost");
+    let newFavorites = favorites.filter( character => character.id !== Number(id));
+    favorites = newFavorites;
+
+    res.status(200);
+});
+
+
+
+server.listen(PORT, () => {
+    console.log('Server raised in port ' + PORT);
+ });

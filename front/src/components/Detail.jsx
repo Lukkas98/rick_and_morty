@@ -82,7 +82,7 @@ export default function Detail(){
     const [character , setCharacter] = useState({})
 
     useEffect(() => {
-        axios(`http://localhost:3001/rickandmorty/detail/${id}`)
+        axios(`http://localhost:3001/detail/${id}`)
           .then( res => res.data)
           .then( char  => { setCharacter(char) })
           
