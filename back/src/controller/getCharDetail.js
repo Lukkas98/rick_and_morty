@@ -6,16 +6,16 @@ const getCharDetail = async (req, res)=>{
     try {
         const {id} = req.params;
 
-        const resolve = await axios(`${url}${id}`);
+        const {data} = await axios(`${url}${id}`);
         
         const character = {
-            id: resolve.data.id,
-            image: resolve.data.image,
-            name: resolve.data.name,
-            status: resolve.data.status,
-            species: resolve.data.species,
-            origin: resolve.data.origin,
-            gender: resolve.data.gender
+            id: data.id,
+            image: data.image,
+            name: data.name,
+            status: data.status,
+            species: data.species,
+            origin: data.origin,
+            gender: data.gender
         }
             
         res.status(200).json(character);

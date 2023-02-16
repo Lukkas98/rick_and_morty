@@ -51,7 +51,7 @@ function App() {
       return;
     }
 
-    axios(`http://localhost:3001/onsearch/${characterID}`)
+    axios(`http://localhost:3001/rickandmorty/onsearch/${characterID}`)
       .then( res => res.data )
       .then( data => {
         if (data.name) {

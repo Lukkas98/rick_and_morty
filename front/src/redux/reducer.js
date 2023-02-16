@@ -1,4 +1,4 @@
-import { ADD_CHARACTER, FILTER, ORDER, REMOVE_CHARACTER } from "./type";
+import { ADD_CHARACTER, FILTER, ORDER, REMOVE_CHARACTER, GET_FAVORITES } from "./type";
 
 const initialState = {
     myFavorites: [],
