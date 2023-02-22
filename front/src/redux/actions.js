@@ -1,4 +1,4 @@
-import { ADD_CHARACTER, FILTER, ORDER, REMOVE_CHARACTER } from "./type";
+import { ADD_CHARACTER, FILTER, ORDER, REMOVE_CHARACTER, GET_FAVORITES } from "./type";
 import axios from "axios";
 
 export function addCharacter(character) {
@@ -28,6 +28,16 @@ export function removeCharacter(id){
         }   
     };
 };
+
+export function getFavorites(){
+    return async (dispatch) => {
+        let {data} = await axios("http://localhost:3001/rickandmorty/fav")
+        dispatch({
+            type: GET_FAVORITES,
+            payload: data
+        })
+    }
+}
 
 export function filterCards(status){
     return{

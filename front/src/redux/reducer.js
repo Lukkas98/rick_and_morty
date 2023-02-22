@@ -20,6 +20,12 @@ export default function reducer (state = initialState, { type, payload }){
                 myFavorites: newArray,
                 allCharacters: newArray
             }
+        case GET_FAVORITES:
+            return{
+                ...state,
+                myFavorites: [...state.myFavorites, payload],
+                allCharacters: [...state.myFavorites, payload]
+            }
             
         case FILTER:
             if(payload === "All"){

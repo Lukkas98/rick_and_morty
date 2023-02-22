@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { filterCards, orderCards } from "../redux/actions";
+import { filterCards, getFavorites, orderCards } from "../redux/actions";
 
 const DivImage = styled.div`
     gap: 25px;
@@ -127,6 +127,7 @@ export function Favorites() {
     const dispatch = useDispatch()
 
     useEffect(()=> { 
+        dispatch(getFavorites())
         dispatch(filterCards("All"))
         dispatch(orderCards("Ascendente"))
     } , [dispatch])

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom"; 
 import styled, { keyframes } from "styled-components";
 import axios from "axios";
+import loading from "./assets/Loading.gif"
 
 const sideRigth = keyframes`
   from {
@@ -61,6 +62,12 @@ const Img = styled.img`
   outline: 1px solid #020202;
   box-shadow: 2px 5px 5px 0 black;
 `
+const Loading = styled.img`
+  width: 200px;
+  border-radius: 75px;
+  margin: 30px 80px;
+`
+
 const Button = styled(NavLink)`
   font-size: 20px;
   text-decoration: none;
@@ -82,12 +89,17 @@ export default function Detail(){
     const [character , setCharacter] = useState({})
 
     useEffect(() => {
-        axios(`http://localhost:3001/rickandmorty/detail/${id}`)
-          .then( res => res.data)
-          .then( char  => { setCharacter(char) })
-          
-        return setCharacter({});
-    }, [id]);
+      async function fetchCharacter() {
+          let {data} = await axios(`http://localhost:3001/rickandmorty/detail/${id}`);
+          setCharacter(data);
+      }
+      fetchCharacter();
+
+      // Función de limpieza
+      return () => {
+          setCharacter({});
+      };
+  }, [id]);
 
 
     return(
@@ -101,7 +113,9 @@ export default function Detail(){
               <PDetail>{character.origin ? `Origin: ${character.origin.name} ` : `Origin: Don't have origin`}</PDetail>
             </div>
             <DivImage>
-              <Img src={character.image} alt={character.name} />
+              {
+                character.image ? (<Img src={character.image} alt={character.name} />) : <Loading src={loading}></Loading>
+              }
               <Button to={"/"}>Back</Button>
             </DivImage>
           </DivContainer>
