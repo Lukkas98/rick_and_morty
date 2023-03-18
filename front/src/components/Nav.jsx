@@ -8,8 +8,6 @@ const Navbar = styled.nav`
     justify-content: center;
 `
 
-
-
 export default function Nav({ onSearch, unLogin }){
 
     return(
