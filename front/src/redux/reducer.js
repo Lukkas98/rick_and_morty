@@ -23,8 +23,8 @@ export default function reducer (state = initialState, { type, payload }){
         case GET_FAVORITES:
             return{
                 ...state,
-                myFavorites: [...state.myFavorites, payload],
-                allCharacters: [...state.myFavorites, payload]
+                myFavorites: [...state.myFavorites],
+                allCharacters: [...state.myFavorites]
             }
             
         case FILTER:
